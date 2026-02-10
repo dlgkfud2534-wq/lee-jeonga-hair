@@ -9,15 +9,14 @@ const hours = [
 ]
 
 export default function Location() {
-  const phone = import.meta.env.VITE_BUSINESS_PHONE
-  const address = import.meta.env.VITE_BUSINESS_ADDRESS
-  const addressDetail = import.meta.env.VITE_BUSINESS_ADDRESS_DETAIL
-  const kakaoId = import.meta.env.VITE_KAKAO_ID
+  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE
+  const address = process.env.NEXT_PUBLIC_BUSINESS_ADDRESS
+  const addressDetail = process.env.NEXT_PUBLIC_BUSINESS_ADDRESS_DETAIL
+  const kakaoId = process.env.NEXT_PUBLIC_KAKAO_ID
 
   return (
     <section id="location" className="py-16 md:py-24 bg-beige">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
-        {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
             Location
@@ -31,7 +30,6 @@ export default function Location() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Map Placeholder */}
           <div className="rounded-2xl overflow-hidden bg-cream aspect-[4/3] flex items-center justify-center">
             <div className="text-center p-8">
               <div className="text-6xl mb-4 opacity-30">🗺️</div>
@@ -44,9 +42,7 @@ export default function Location() {
             </div>
           </div>
 
-          {/* Info */}
           <div className="space-y-8">
-            {/* Address */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
                 주소
@@ -59,7 +55,6 @@ export default function Location() {
               </p>
             </div>
 
-            {/* Business Hours */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
                 영업시간
@@ -81,7 +76,6 @@ export default function Location() {
               </div>
             </div>
 
-            {/* Parking */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
                 주차 안내
@@ -94,7 +88,6 @@ export default function Location() {
               </p>
             </div>
 
-            {/* Contact */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
                 연락처

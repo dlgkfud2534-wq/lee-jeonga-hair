@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { seseoProducts, badgeColors, formatPrice } from '../data/products'
+import Link from 'next/link'
+import { seseoProducts, badgeColors, formatPrice } from '@/data/products'
 
 const featured = seseoProducts.slice(0, 4)
 
@@ -24,7 +24,7 @@ export default function Products() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map((product) => (
             <Link
-              to={`/products/${product.id}`}
+              href={`/products/${product.id}`}
               key={product.id}
               className="group bg-beige rounded-2xl overflow-hidden border border-caramel/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
@@ -68,7 +68,7 @@ export default function Products() {
         {/* View All Link */}
         <div className="text-center mt-10">
           <Link
-            to="/products"
+            href="/products"
             className="inline-flex items-center gap-2 text-base font-semibold text-warm-brown border-2 border-warm-brown/30 hover:border-warm-brown hover:bg-warm-brown/5 px-8 py-3 rounded-full transition-colors"
           >
             전체 상품 보기

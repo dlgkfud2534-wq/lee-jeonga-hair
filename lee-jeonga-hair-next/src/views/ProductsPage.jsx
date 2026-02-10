@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
-import { allProducts, badgeColors, formatPrice } from '../data/products'
+import Link from 'next/link'
+import { allProducts, badgeColors, formatPrice } from '@/data/products'
 
 export default function ProductsPage() {
-  const phone = import.meta.env.VITE_BUSINESS_PHONE
+  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE
 
   return (
     <main className="pt-16">
@@ -10,7 +10,7 @@ export default function ProductsPage() {
       <div className="bg-gradient-to-br from-beige via-cream to-golden-sand/20 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="flex items-center gap-2 text-sm text-dark-brown/50 mb-6">
-            <Link to="/" className="hover:text-warm-brown transition-colors">홈</Link>
+            <Link href="/" className="hover:text-warm-brown transition-colors">홈</Link>
             <span>/</span>
             <span className="text-dark-brown font-medium">상품</span>
           </div>
@@ -57,12 +57,11 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {allProducts.map((product) => (
               <Link
-                to={`/products/${product.id}`}
+                href={`/products/${product.id}`}
                 key={product.id}
                 id={product.id}
                 className="group bg-beige rounded-2xl overflow-hidden border border-caramel/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Image */}
                 <div className="relative aspect-square overflow-hidden bg-[#f0ece7]">
                   <img
                     src={product.image}
@@ -81,7 +80,6 @@ export default function ProductsPage() {
                   </span>
                 </div>
 
-                {/* Info */}
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-xs font-semibold text-caramel tracking-wide">
@@ -98,7 +96,6 @@ export default function ProductsPage() {
                     {product.shortDesc}
                   </p>
 
-                  {/* Price */}
                   <div className="flex items-baseline gap-2 pt-3 border-t border-caramel/10">
                     <span className="text-lg font-bold text-warm-brown">
                       {formatPrice(product.sizes[product.sizes.length - 1].price)}

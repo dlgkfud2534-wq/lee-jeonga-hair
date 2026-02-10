@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { getProductById, formatPrice, seseoProducts } from '../data/products'
+'use client'
 
-export default function ProductDetailPage() {
-  const phone = import.meta.env.VITE_BUSINESS_PHONE
-  const { id } = useParams()
+import { useState } from 'react'
+import Link from 'next/link'
+import { getProductById, formatPrice, seseoProducts } from '@/data/products'
+
+export default function ProductDetailPage({ id }) {
+  const phone = process.env.NEXT_PUBLIC_BUSINESS_PHONE
   const product = getProductById(id)
   const [selectedSize, setSelectedSize] = useState(0)
 
@@ -14,7 +15,7 @@ export default function ProductDetailPage() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-dark-brown mb-4">상품을 찾을 수 없습니다</h1>
           <Link
-            to="/products"
+            href="/products"
             className="text-warm-brown font-semibold hover:underline"
           >
             상품 목록으로 돌아가기
@@ -34,9 +35,9 @@ export default function ProductDetailPage() {
       <div className="bg-beige border-b border-caramel/10">
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-4">
           <div className="flex items-center gap-2 text-sm text-dark-brown/50">
-            <Link to="/" className="hover:text-warm-brown transition-colors">홈</Link>
+            <Link href="/" className="hover:text-warm-brown transition-colors">홈</Link>
             <span>/</span>
-            <Link to="/products" className="hover:text-warm-brown transition-colors">상품</Link>
+            <Link href="/products" className="hover:text-warm-brown transition-colors">상품</Link>
             <span>/</span>
             <span className="text-dark-brown font-medium truncate">{product.name}</span>
           </div>
@@ -77,7 +78,6 @@ export default function ProductDetailPage() {
 
             {/* Info */}
             <div className="flex flex-col">
-              {/* Brand & Step */}
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-sm font-semibold text-caramel tracking-wide">
                   {product.brand}
@@ -88,18 +88,12 @@ export default function ProductDetailPage() {
                   </span>
                 )}
               </div>
-
-              {/* Name */}
               <h1 className="text-3xl md:text-4xl font-extrabold text-dark-brown leading-tight tracking-tight mb-4">
                 {product.name}
               </h1>
-
-              {/* Short Description */}
               <p className="text-lg text-dark-brown/70 leading-relaxed mb-6">
                 {product.shortDesc}
               </p>
-
-              {/* Divider */}
               <div className="border-t border-caramel/15 my-2" />
 
               {/* Size Selector */}
@@ -168,14 +162,9 @@ export default function ProductDetailPage() {
       <div className="bg-beige py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
-            <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
-              Product Details
-            </p>
-            <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">
-              제품 상세 정보
-            </h2>
+            <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">Product Details</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">제품 상세 정보</h2>
           </div>
-
           <div className="bg-cream rounded-3xl p-8 md:p-12 border border-caramel/10">
             <p className="text-base md:text-lg text-dark-brown/80 leading-relaxed md:leading-loose">
               {product.description}
@@ -189,30 +178,18 @@ export default function ProductDetailPage() {
         <div className="bg-cream py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-6 md:px-10">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
-                Key Features
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">
-                주요 특징
-              </h2>
+              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">Key Features</p>
+              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">주요 특징</h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {product.features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 bg-beige rounded-2xl p-6 border border-caramel/10"
-                >
+                <div key={i} className="flex items-start gap-4 bg-beige rounded-2xl p-6 border border-caramel/10">
                   <div className="w-10 h-10 rounded-full bg-warm-brown/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-warm-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <div>
-                    <p className="text-base font-semibold text-dark-brown leading-snug">
-                      {feature}
-                    </p>
-                  </div>
+                  <p className="text-base font-semibold text-dark-brown leading-snug">{feature}</p>
                 </div>
               ))}
             </div>
@@ -225,14 +202,9 @@ export default function ProductDetailPage() {
         <div className="bg-beige py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-6 md:px-10">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
-                How to Use
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">
-                사용 방법
-              </h2>
+              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">How to Use</p>
+              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">사용 방법</h2>
             </div>
-
             <div className="bg-cream rounded-3xl p-8 md:p-12 border border-caramel/10">
               <div className="flex items-start gap-5">
                 <div className="w-12 h-12 rounded-2xl bg-warm-brown/10 flex items-center justify-center shrink-0">
@@ -240,42 +212,26 @@ export default function ProductDetailPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <p className="text-base md:text-lg text-dark-brown/80 leading-relaxed md:leading-loose">
-                  {product.usage}
-                </p>
+                <p className="text-base md:text-lg text-dark-brown/80 leading-relaxed md:leading-loose">{product.usage}</p>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* ===== Section 5: 용량 및 가격 안내 ===== */}
+      {/* ===== Section 5: 용량 및 가격 ===== */}
       <div className="bg-cream py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 md:px-10">
           <div className="text-center mb-12">
-            <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
-              Price
-            </p>
-            <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">
-              용량 및 가격
-            </h2>
+            <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">Price</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">용량 및 가격</h2>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {product.sizes.map((size, i) => (
-              <div
-                key={i}
-                className="bg-beige rounded-2xl p-6 md:p-8 border border-caramel/10 text-center"
-              >
-                <p className="text-sm text-caramel font-medium mb-2">
-                  {product.name}
-                </p>
-                <p className="text-2xl md:text-3xl font-extrabold text-dark-brown mb-1">
-                  {size.volume}
-                </p>
-                <p className="text-xl font-bold text-warm-brown">
-                  {formatPrice(size.price)}
-                </p>
+              <div key={i} className="bg-beige rounded-2xl p-6 md:p-8 border border-caramel/10 text-center">
+                <p className="text-sm text-caramel font-medium mb-2">{product.name}</p>
+                <p className="text-2xl md:text-3xl font-extrabold text-dark-brown mb-1">{size.volume}</p>
+                <p className="text-xl font-bold text-warm-brown">{formatPrice(size.price)}</p>
               </div>
             ))}
           </div>
@@ -286,9 +242,7 @@ export default function ProductDetailPage() {
       <div className="bg-beige py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 md:px-10">
           <div className="bg-gradient-to-br from-warm-brown to-warm-brown-light rounded-3xl p-8 md:p-14 text-center text-white">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              구매를 원하시나요?
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">구매를 원하시나요?</h2>
             <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-xl mx-auto mb-8">
               모든 상품은 매장에서 직접 상담 후 구매하실 수 있습니다.
               <br />
@@ -323,19 +277,14 @@ export default function ProductDetailPage() {
         <div className="bg-cream py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-6 md:px-10">
             <div className="text-center mb-12">
-              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
-                More Products
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">
-                함께 사용하면 좋은 제품
-              </h2>
+              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">More Products</p>
+              <h2 className="text-2xl md:text-4xl font-bold text-dark-brown leading-tight">함께 사용하면 좋은 제품</h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {relatedProducts.map((rp) => (
                 <Link
                   key={rp.id}
-                  to={`/products/${rp.id}`}
+                  href={`/products/${rp.id}`}
                   className="group bg-beige rounded-2xl overflow-hidden border border-caramel/10 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <div className="relative aspect-square overflow-hidden bg-[#f0ece7]">
@@ -368,7 +317,7 @@ export default function ProductDetailPage() {
       <div className="bg-beige py-12">
         <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
           <Link
-            to="/products"
+            href="/products"
             className="inline-flex items-center gap-2 text-base font-semibold text-warm-brown border-2 border-warm-brown/30 hover:border-warm-brown hover:bg-warm-brown/5 px-8 py-3 rounded-full transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
