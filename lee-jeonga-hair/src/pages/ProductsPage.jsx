@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { allProducts, badgeColors, formatPrice } from '../data/products'
 
 export default function ProductsPage() {
+  const phone = import.meta.env.VITE_BUSINESS_PHONE
+
   return (
     <main className="pt-16">
       {/* Hero Banner */}
@@ -125,7 +127,7 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="tel:02-1234-5678"
+                href={`tel:${phone}`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-warm-brown text-white rounded-full font-semibold hover:bg-warm-brown-light transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { getProductById, formatPrice, seseoProducts } from '../data/products'
 
 export default function ProductDetailPage() {
+  const phone = import.meta.env.VITE_BUSINESS_PHONE
   const { id } = useParams()
   const product = getProductById(id)
   const [selectedSize, setSelectedSize] = useState(0)
@@ -139,7 +140,7 @@ export default function ProductDetailPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href="tel:02-1234-5678"
+                    href={`tel:${phone}`}
                     className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-warm-brown text-white rounded-full font-semibold hover:bg-warm-brown-light transition-colors text-base"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,7 +296,7 @@ export default function ProductDetailPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="tel:02-1234-5678"
+                href={`tel:${phone}`}
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-warm-brown rounded-full font-semibold hover:bg-cream transition-colors text-base"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

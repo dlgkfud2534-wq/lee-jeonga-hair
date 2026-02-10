@@ -1,4 +1,10 @@
 export default function Footer() {
+  const phone = import.meta.env.VITE_BUSINESS_PHONE
+  const email = import.meta.env.VITE_BUSINESS_EMAIL
+  const address = import.meta.env.VITE_BUSINESS_ADDRESS
+  const registration = import.meta.env.VITE_BUSINESS_REGISTRATION
+  const owner = import.meta.env.VITE_BUSINESS_OWNER
+
   return (
     <footer className="bg-dark-brown text-white/70 py-12 md:py-16">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -40,9 +46,9 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white mb-3 tracking-wide">연락처</h4>
             <div className="space-y-2 text-sm text-white/50 mb-4">
-              <p>서울특별시 강남구 테헤란로 123</p>
-              <p>02-1234-5678</p>
-              <p>info@leejeonghair.com</p>
+              <p>{address}</p>
+              <p>{phone}</p>
+              <p>{email}</p>
             </div>
 
             {/* SNS Icons */}
@@ -87,7 +93,7 @@ export default function Footer() {
             &copy; 2025 이정아 헤어. All rights reserved.
           </p>
           <p className="text-xs text-white/30">
-            사업자등록번호: 123-45-67890 | 대표: 이정아
+            사업자등록번호: {registration} | 대표: {owner}
           </p>
         </div>
       </div>

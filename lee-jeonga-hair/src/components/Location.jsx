@@ -9,6 +9,11 @@ const hours = [
 ]
 
 export default function Location() {
+  const phone = import.meta.env.VITE_BUSINESS_PHONE
+  const address = import.meta.env.VITE_BUSINESS_ADDRESS
+  const addressDetail = import.meta.env.VITE_BUSINESS_ADDRESS_DETAIL
+  const kakaoId = import.meta.env.VITE_KAKAO_ID
+
   return (
     <section id="location" className="py-16 md:py-24 bg-beige">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -32,9 +37,9 @@ export default function Location() {
               <div className="text-6xl mb-4 opacity-30">🗺️</div>
               <p className="text-base font-medium text-dark-brown/50 mb-2">지도 영역</p>
               <p className="text-sm text-dark-brown/40">
-                서울특별시 강남구 테헤란로 123
+                {address}
                 <br />
-                이정아빌딩 2층
+                {addressDetail}
               </p>
             </div>
           </div>
@@ -47,7 +52,7 @@ export default function Location() {
                 주소
               </h3>
               <p className="text-base md:text-lg font-normal leading-relaxed text-dark-brown/70">
-                서울특별시 강남구 테헤란로 123 이정아빌딩 2층
+                {address} {addressDetail}
               </p>
               <p className="text-sm text-dark-brown/50 mt-1">
                 강남역 3번 출구에서 도보 3분
@@ -97,12 +102,12 @@ export default function Location() {
               <div className="space-y-1">
                 <p className="text-base font-normal text-dark-brown/70">
                   <span className="font-medium text-dark-brown">전화:</span>{' '}
-                  <a href="tel:02-1234-5678" className="hover:text-warm-brown transition-colors">
-                    02-1234-5678
+                  <a href={`tel:${phone}`} className="hover:text-warm-brown transition-colors">
+                    {phone}
                   </a>
                 </p>
                 <p className="text-base font-normal text-dark-brown/70">
-                  <span className="font-medium text-dark-brown">카카오톡:</span> @이정아헤어
+                  <span className="font-medium text-dark-brown">카카오톡:</span> {kakaoId}
                 </p>
               </div>
             </div>
