@@ -9,56 +9,40 @@ const galleryItems = [
   { id: 8, label: '댄디 숏컷', category: '커트' },
 ]
 
-const colors = [
-  'from-caramel/40 to-golden-sand/30',
-  'from-warm-brown/30 to-caramel/20',
-  'from-golden-sand/40 to-beige',
-  'from-caramel/30 to-warm-brown/20',
-  'from-warm-brown/20 to-golden-sand/30',
-  'from-golden-sand/30 to-caramel/20',
-  'from-caramel/20 to-warm-brown/30',
-  'from-warm-brown/30 to-golden-sand/20',
-]
-
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-16 md:py-24 bg-beige">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
+    <section id="gallery" className="py-20 md:py-32 bg-black">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-accent mb-4">
             Portfolio
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-dark-brown mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-white">
             시술 갤러리
           </h2>
-          <p className="text-lg md:text-xl font-normal leading-relaxed text-dark-brown/70 max-w-2xl mx-auto">
-            이정아 헤어에서 완성한 다양한 스타일을 만나보세요
-          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
           {galleryItems.map((item, index) => (
             <div
               key={item.id}
-              className={`relative aspect-square rounded-2xl overflow-hidden group cursor-pointer ${
+              className={`relative aspect-square overflow-hidden group cursor-pointer ${
                 index === 0 || index === 5 ? 'md:col-span-2 md:row-span-2' : ''
               }`}
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${colors[index]} flex items-center justify-center`}
-              >
+              <div className="absolute inset-0 bg-darkgray flex items-center justify-center">
                 <div className="text-center p-4">
-                  <span className="text-4xl md:text-5xl block mb-2 opacity-30">📷</span>
-                  <span className="text-xs md:text-sm text-dark-brown/40 font-medium">
-                    시술 사진
+                  <span className="text-3xl md:text-4xl block mb-2 opacity-20">+</span>
+                  <span className="text-[10px] text-white/20 font-medium tracking-wider uppercase">
+                    Photo
                   </span>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-dark-brown/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4">
-                <span className="text-xs font-medium tracking-wider uppercase text-golden-sand mb-2">
+              <div className="absolute inset-0 bg-accent/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4">
+                <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/70 mb-2">
                   {item.category}
                 </span>
-                <h3 className="text-base md:text-lg font-semibold text-center leading-snug">
+                <h3 className="text-sm md:text-base font-semibold text-center leading-snug">
                   {item.label}
                 </h3>
               </div>

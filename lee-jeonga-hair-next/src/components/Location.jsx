@@ -15,26 +15,23 @@ export default function Location() {
   const kakaoId = process.env.NEXT_PUBLIC_KAKAO_ID
 
   return (
-    <section id="location" className="py-16 md:py-24 bg-beige">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
+    <section id="location" className="py-20 md:py-32 bg-offwhite">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-accent mb-4">
             Location
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-dark-brown mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-black">
             오시는 길
           </h2>
-          <p className="text-lg md:text-xl font-normal leading-relaxed text-dark-brown/70 max-w-2xl mx-auto">
-            편리한 위치에서 만나보세요
-          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          <div className="rounded-2xl overflow-hidden bg-cream aspect-[4/3] flex items-center justify-center">
+          <div className="overflow-hidden bg-lightgray aspect-[4/3] flex items-center justify-center border border-lightgray">
             <div className="text-center p-8">
-              <div className="text-6xl mb-4 opacity-30">🗺️</div>
-              <p className="text-base font-medium text-dark-brown/50 mb-2">지도 영역</p>
-              <p className="text-sm text-dark-brown/40">
+              <div className="text-5xl mb-4 opacity-20">+</div>
+              <p className="text-sm font-medium text-midgray mb-2">지도 영역</p>
+              <p className="text-[11px] text-midgray leading-relaxed">
                 {address}
                 <br />
                 {addressDetail}
@@ -44,31 +41,25 @@ export default function Location() {
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
-                주소
-              </h3>
-              <p className="text-base md:text-lg font-normal leading-relaxed text-dark-brown/70">
+              <h3 className="text-lg font-semibold text-black mb-2">주소</h3>
+              <p className="text-sm text-darkgray leading-relaxed">
                 {address} {addressDetail}
               </p>
-              <p className="text-sm text-dark-brown/50 mt-1">
-                군산 미장동 위치
-              </p>
+              <p className="text-[11px] text-midgray mt-1">군산 미장동 위치</p>
             </div>
 
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
-                영업시간
-              </h3>
-              <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-black mb-3">영업시간</h3>
+              <div className="space-y-0">
                 {hours.map((h) => (
                   <div
                     key={h.day}
-                    className={`flex justify-between items-center py-2 border-b border-caramel/10 ${
-                      h.closed ? 'text-dark-brown/40' : 'text-dark-brown/70'
+                    className={`flex justify-between items-center py-2.5 border-b border-lightgray ${
+                      h.closed ? 'text-midgray' : 'text-darkgray'
                     }`}
                   >
                     <span className="text-sm font-medium">{h.day}</span>
-                    <span className={`text-sm ${h.closed ? 'text-caramel font-medium' : ''}`}>
+                    <span className={`text-sm ${h.closed ? 'text-accent font-semibold' : ''}`}>
                       {h.time}
                     </span>
                   </div>
@@ -77,30 +68,26 @@ export default function Location() {
             </div>
 
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
-                주차 안내
-              </h3>
-              <p className="text-base md:text-lg font-normal leading-relaxed text-dark-brown/70">
+              <h3 className="text-lg font-semibold text-black mb-2">주차 안내</h3>
+              <p className="text-sm text-darkgray leading-relaxed">
                 건물 지하 주차장 이용 가능 (2시간 무료)
               </p>
-              <p className="text-sm text-dark-brown/50 mt-1">
+              <p className="text-[11px] text-midgray mt-1">
                 근처 공영주차장도 이용하실 수 있습니다.
               </p>
             </div>
 
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-3">
-                연락처
-              </h3>
+              <h3 className="text-lg font-semibold text-black mb-2">연락처</h3>
               <div className="space-y-1">
-                <p className="text-base font-normal text-dark-brown/70">
-                  <span className="font-medium text-dark-brown">전화:</span>{' '}
-                  <a href={`tel:${phone}`} className="hover:text-warm-brown transition-colors">
+                <p className="text-sm text-darkgray">
+                  <span className="font-medium text-black">전화:</span>{' '}
+                  <a href={`tel:${phone}`} className="hover:text-accent transition-colors">
                     {phone}
                   </a>
                 </p>
-                <p className="text-base font-normal text-dark-brown/70">
-                  <span className="font-medium text-dark-brown">카카오톡:</span> {kakaoId}
+                <p className="text-sm text-darkgray">
+                  <span className="font-medium text-black">카카오톡:</span> {kakaoId}
                 </p>
               </div>
             </div>

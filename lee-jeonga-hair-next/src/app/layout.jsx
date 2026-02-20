@@ -3,6 +3,7 @@ import { Noto_Sans_KR } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FirebaseInit from '@/components/FirebaseInit'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
@@ -55,11 +56,13 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <body className={notoSansKR.className}>
         <FirebaseInit />
-        <div className="min-h-screen bg-cream">
-          <Navbar />
-          {children}
-          <Footer />
-        </div>
+        <AuthProvider>
+          <div className="min-h-screen bg-white">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   )

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 
 const navLinks = [
   { label: '상품', href: '/products', isRoute: true },
@@ -13,6 +14,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const isProductsPage = pathname === '/products'
+  const { user } = useAuth()
+
+  // 홈, 상품 목록만 어두운 히어로 섹션이 있음
+  const hasDarkHero = pathname === '/' || pathname === '/products'
+  // 밝은 배경 페이지이거나 스크롤한 경우 어두운 텍스트 사용
+  const useDark = scrolled || !hasDarkHero
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -22,11 +29,11 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md border-b border-lightgray' : 'bg-transparent'
+      useDark ? 'bg-white/95 backdrop-blur-md border-b border-lightgray' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-18">
         {/* Logo */}
-        <Link href="/" className={`text-xl md:text-2xl font-bold tracking-tight transition-colors ${scrolled ? 'text-black' : 'text-white'}`}>
+        <Link href="/" className={`text-xl md:text-2xl font-bold tracking-tight transition-colors ${useDark ? 'text-black' : 'text-white'}`}>
           LEE JEONGA<span className="text-accent">.</span>
         </Link>
 
@@ -40,7 +47,7 @@ export default function Navbar() {
                   className={`text-[13px] font-medium tracking-wide uppercase transition-colors ${
                     isProductsPage
                       ? 'text-accent'
-                      : scrolled ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                      : useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
                   }`}
                 >
                   {link.label}
@@ -51,7 +58,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   className={`text-[13px] font-medium tracking-wide uppercase transition-colors ${
-                    scrolled ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                    useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
                   }`}
                 >
                   {link.label}
@@ -59,6 +66,41 @@ export default function Navbar() {
               </li>
             )
           )}
+          {user?.isAdmin && (
+            <li>
+              <Link
+                href="/admin"
+                className={`text-[13px] font-medium tracking-wide uppercase transition-colors ${
+                  pathname === '/admin'
+                    ? 'text-accent'
+                    : useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                }`}
+              >
+                관리자
+              </Link>
+            </li>
+          )}
+          <li>
+            {user ? (
+              <Link
+                href="/mypage"
+                className={`text-[13px] font-medium tracking-wide transition-colors ${
+                  useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                }`}
+              >
+                {user.name}님
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className={`text-[13px] font-medium tracking-wide transition-colors ${
+                  useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                }`}
+              >
+                로그인
+              </Link>
+            )}
+          </li>
           <li>
             <a
               href="/#reservation"
@@ -75,9 +117,9 @@ export default function Navbar() {
           onClick={() => setOpen(!open)}
           aria-label="메뉴 열기"
         >
-          <span className={`block w-6 h-0.5 transition-transform ${scrolled ? 'bg-black' : 'bg-white'} ${open ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-opacity ${scrolled ? 'bg-black' : 'bg-white'} ${open ? 'opacity-0' : ''}`} />
-          <span className={`block w-6 h-0.5 transition-transform ${scrolled ? 'bg-black' : 'bg-white'} ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 transition-transform ${useDark ? 'bg-black' : 'bg-white'} ${open ? 'rotate-45 translate-y-2' : ''}`} />
+          <span className={`block w-6 h-0.5 transition-opacity ${useDark ? 'bg-black' : 'bg-white'} ${open ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 transition-transform ${useDark ? 'bg-black' : 'bg-white'} ${open ? '-rotate-45 -translate-y-2' : ''}`} />
         </button>
       </div>
 
@@ -110,6 +152,38 @@ export default function Navbar() {
                 </li>
               )
             )}
+            {user?.isAdmin && (
+              <li>
+                <Link
+                  href="/admin"
+                  className={`text-sm font-medium uppercase tracking-wide transition-colors ${
+                    pathname === '/admin' ? 'text-accent' : 'text-darkgray hover:text-accent'
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  관리자
+                </Link>
+              </li>
+            )}
+            <li>
+              {user ? (
+                <Link
+                  href="/mypage"
+                  className="text-sm font-medium uppercase tracking-wide text-darkgray hover:text-accent transition-colors"
+                  onClick={() => setOpen(false)}
+                >
+                  {user.name}님
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="text-sm font-medium uppercase tracking-wide text-darkgray hover:text-accent transition-colors"
+                  onClick={() => setOpen(false)}
+                >
+                  로그인
+                </Link>
+              )}
+            </li>
             <li>
               <a
                 href="/#reservation"

@@ -177,11 +177,11 @@ export const allProducts = [...seseoProducts]
 export const categories = ['전체']
 
 export const badgeColors = {
-  '베스트': 'bg-warm-brown text-white',
-  '추천': 'bg-caramel text-white',
-  '인기': 'bg-golden-sand text-dark-brown',
-  '프리미엄': 'bg-dark-brown text-golden-sand',
-  '두피케어': 'bg-emerald-700 text-white',
+  '베스트': 'bg-accent text-white',
+  '추천': 'bg-black text-white',
+  '인기': 'bg-darkgray text-white',
+  '프리미엄': 'bg-black text-white',
+  '두피케어': 'bg-accent-dark text-white',
 }
 
 export function formatPrice(price) {

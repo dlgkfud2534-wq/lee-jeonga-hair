@@ -4,10 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
-function cn(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const TestimonialCard = ({ testimonial, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -21,76 +17,58 @@ const TestimonialCard = ({ testimonial, index }) => {
       className="relative"
     >
       <motion.div
-        animate={{
-          y: isHovered ? -8 : 0,
-        }}
+        animate={{ y: isHovered ? -4 : 0 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className={cn(
-          "relative rounded-2xl p-6 transition-all duration-300",
-          "bg-[#F5EDE4] border border-[#D4A574]/20",
-          isHovered ? "shadow-2xl shadow-[#8B6F47]/20" : "shadow-lg shadow-[#8B6F47]/10"
-        )}
+        className={`relative border transition-all duration-300 p-6 ${
+          isHovered ? "border-accent shadow-lg" : "border-[#EEEEEE]"
+        }`}
       >
-        {/* Avatar/Image */}
-        <div className="flex justify-center mb-6">
-          <div className="relative">
-            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[#D4A574] shadow-lg">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-2 -right-2 bg-[#8B6F47] rounded-full p-2 shadow-md">
-              <Quote className="w-4 h-4 text-[#FAF6F1]" />
-            </div>
-          </div>
+        {/* Quote icon */}
+        <div className="mb-4">
+          <Quote className="w-6 h-6 text-accent" />
         </div>
 
         {/* Star Rating */}
-        <div className="flex justify-center mb-4">
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 5 }).map((_, starIndex) => (
-              <Star
-                key={starIndex}
-                className={cn(
-                  "w-5 h-5 transition-all duration-200",
-                  starIndex < testimonial.rating
-                    ? "fill-[#D4A574] text-[#D4A574]"
-                    : "fill-transparent text-[#C4956A]/30"
-                )}
-              />
-            ))}
-          </div>
+        <div className="flex items-center gap-0.5 mb-4">
+          {Array.from({ length: 5 }).map((_, starIndex) => (
+            <Star
+              key={starIndex}
+              className={`w-4 h-4 ${
+                starIndex < testimonial.rating
+                  ? "fill-accent text-accent"
+                  : "fill-transparent text-[#EEEEEE]"
+              }`}
+            />
+          ))}
         </div>
 
         {/* Review Text */}
-        <div className="mb-6">
-          <p className="text-[#3D2B1F] text-center text-sm leading-relaxed italic">
-            &ldquo;{testimonial.review}&rdquo;
-          </p>
-        </div>
+        <p className="text-sm leading-relaxed text-[#333333] mb-6">
+          &ldquo;{testimonial.review}&rdquo;
+        </p>
 
         {/* Service Badge */}
-        <div className="flex justify-center mb-4">
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#8B6F47] text-[#FAF6F1] text-xs font-medium shadow-sm">
-            {testimonial.service}
-          </span>
-        </div>
+        <span className="inline-block px-3 py-1 text-[10px] font-semibold tracking-wide uppercase bg-[#111111] text-white mb-4">
+          {testimonial.service}
+        </span>
 
-        {/* Author Details */}
-        <div className="text-center border-t border-[#D4A574]/20 pt-4">
-          <h3 className="text-[#3D2B1F] font-semibold text-base mb-1">
-            {testimonial.name}
-          </h3>
-          {testimonial.role && (
-            <p className="text-[#8B6F47] text-xs">{testimonial.role}</p>
-          )}
-        </div>
-
-        {/* Decorative corner accent */}
-        <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden rounded-tr-2xl">
-          <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-[#D4A574]/10 to-transparent" />
+        {/* Author */}
+        <div className="flex items-center gap-3 border-t border-[#EEEEEE] pt-4">
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-[#EEEEEE]">
+            <img
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-[#111111]">
+              {testimonial.name}
+            </h3>
+            {testimonial.role && (
+              <p className="text-[11px] text-[#999999]">{testimonial.role}</p>
+            )}
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -156,26 +134,23 @@ const testimonials = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-16 md:py-24 bg-[#FAF6F1]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="reviews" className="py-20 md:py-32 bg-offwhite">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#3D2B1F] mb-4">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-accent mb-4">
+            Reviews
+          </p>
+          <h2 className="text-3xl md:text-5xl font-bold text-black">
             고객 후기
           </h2>
-          <p className="text-[#8B6F47] text-lg max-w-2xl mx-auto">
-            저희 살롱을 방문해주신 고객님들의 소중한 경험을 들어보세요
-          </p>
-          <div className="mt-6 flex justify-center">
-            <div className="h-1 w-24 bg-gradient-to-r from-[#C4956A] via-[#D4A574] to-[#C4956A] rounded-full" />
-          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={testimonial.id}
@@ -191,14 +166,11 @@ export default function Reviews() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <p className="text-[#8B6F47] mb-6">
-            당신의 아름다운 변화를 함께 만들어가고 싶습니다
-          </p>
           <motion.a
             href="#reservation"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-3 bg-[#8B6F47] text-[#FAF6F1] rounded-full font-medium shadow-lg hover:bg-[#3D2B1F] transition-colors duration-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block px-8 py-3.5 bg-accent text-white font-semibold text-sm tracking-wide hover:bg-accent-dark transition-colors"
           >
             예약하기
           </motion.a>

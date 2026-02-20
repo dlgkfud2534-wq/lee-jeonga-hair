@@ -27,42 +27,37 @@ const stylists = [
 
 export default function Stylists() {
   return (
-    <section id="stylists" className="py-16 md:py-24 bg-cream">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-3">
+    <section id="stylists" className="py-20 md:py-32 bg-offwhite">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        <div className="text-center mb-16 md:mb-20">
+          <p className="text-[11px] font-medium tracking-[0.3em] uppercase text-accent mb-4">
             Our Team
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-dark-brown mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-black">
             스타일리스트
           </h2>
-          <p className="text-lg md:text-xl font-normal leading-relaxed text-dark-brown/70 max-w-2xl mx-auto">
-            최고의 실력과 정성으로 모시겠습니다
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {stylists.map((stylist) => (
             <div key={stylist.name} className="text-center group">
-              <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-caramel/30 to-golden-sand/30 flex items-center justify-center overflow-hidden group-hover:shadow-xl transition-shadow">
-                <div className="w-full h-full bg-beige rounded-full flex items-center justify-center">
-                  <span className="text-6xl text-caramel/50">👤</span>
-                </div>
+              <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-lightgray flex items-center justify-center overflow-hidden group-hover:ring-2 group-hover:ring-accent transition-all">
+                <span className="text-5xl text-midgray/40">+</span>
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold leading-snug text-dark-brown mb-1">
+              <h3 className="text-xl font-semibold text-black mb-1">
                 {stylist.name}
               </h3>
-              <p className="text-xs font-medium tracking-wider uppercase text-caramel mb-2">
+              <p className="text-[11px] font-medium tracking-[0.2em] uppercase text-accent mb-3">
                 {stylist.role} · {stylist.experience}
               </p>
-              <p className="text-base font-normal leading-relaxed text-dark-brown/70 mb-4 max-w-sm mx-auto">
+              <p className="text-sm font-normal leading-relaxed text-midgray mb-4 max-w-xs mx-auto">
                 {stylist.description}
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 {stylist.specialties.map((s) => (
                   <span
                     key={s}
-                    className="text-xs font-medium text-warm-brown bg-warm-brown/10 px-3 py-1 rounded-full"
+                    className="text-[11px] font-medium text-darkgray border border-lightgray px-3 py-1"
                   >
                     {s}
                   </span>
