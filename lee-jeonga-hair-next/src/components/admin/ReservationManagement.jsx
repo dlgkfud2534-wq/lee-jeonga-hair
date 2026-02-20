@@ -11,7 +11,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
-} from 'firebase/firestore'
+} from 'firebase/firestore/lite'
 import { Plus, X, RefreshCw } from 'lucide-react'
 
 const SERVICES = ['커트', '펌', '염색', '두피·모발 클리닉', '스타일링', '매직·셋팅']

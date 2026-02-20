@@ -9,7 +9,7 @@ import {
   updateDoc,
   orderBy,
   query,
-} from 'firebase/firestore'
+} from 'firebase/firestore/lite'
 import { Search, Save, RefreshCw, ShieldCheck, ShieldOff } from 'lucide-react'
 
 export default function UserManagement() {
