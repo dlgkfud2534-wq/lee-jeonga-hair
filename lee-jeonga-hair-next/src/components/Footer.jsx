@@ -27,11 +27,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { label: '상품', href: '/products' },
+                { label: '온라인 구매', href: process.env.NEXT_PUBLIC_SHOP_URL || 'https://seseo-shop.vercel.app', isExternal: true },
                 { label: '예약하기', href: '#reservation' },
               ].map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    {...(link.isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="text-sm text-white/30 hover:text-accent transition-colors"
                   >
                     {link.label}

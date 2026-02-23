@@ -5,8 +5,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 
+const shopUrl = process.env.NEXT_PUBLIC_SHOP_URL || 'https://seseo-shop.vercel.app'
+
 const navLinks = [
   { label: '상품', href: '/products', isRoute: true },
+  { label: '온라인 구매', href: shopUrl, isExternal: true },
 ]
 
 export default function Navbar() {
@@ -40,7 +43,20 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
-            link.isRoute ? (
+            link.isExternal ? (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-[13px] font-medium tracking-wide uppercase transition-colors ${
+                    useDark ? 'text-darkgray hover:text-accent' : 'text-white/80 hover:text-accent'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ) : link.isRoute ? (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -128,7 +144,19 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-lightgray px-6 pb-6">
           <ul className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) =>
-              link.isRoute ? (
+              link.isExternal ? (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium uppercase tracking-wide text-darkgray hover:text-accent transition-colors"
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ) : link.isRoute ? (
                 <li key={link.href}>
                   <Link
                     href={link.href}
