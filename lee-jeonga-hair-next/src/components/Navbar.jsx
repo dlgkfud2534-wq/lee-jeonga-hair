@@ -8,7 +8,6 @@ import { useAuth } from '@/contexts/AuthContext'
 const shopUrl = process.env.NEXT_PUBLIC_SHOP_URL || 'https://seseo-shop.vercel.app'
 
 const navLinks = [
-  { label: '상품', href: '/products', isRoute: true },
   { label: '온라인 구매', href: shopUrl, isExternal: true },
 ]
 
@@ -16,11 +15,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-  const isProductsPage = pathname === '/products'
   const { user } = useAuth()
 
-  // 홈, 상품 목록만 어두운 히어로 섹션이 있음
-  const hasDarkHero = pathname === '/' || pathname === '/products'
+  // 홈만 어두운 히어로 섹션이 있음
+  const hasDarkHero = pathname === '/'
   // 밝은 배경 페이지이거나 스크롤한 경우 어두운 텍스트 사용
   const useDark = scrolled || !hasDarkHero
 

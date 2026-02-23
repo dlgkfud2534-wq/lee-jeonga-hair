@@ -26,7 +26,6 @@ export default function Footer() {
             <h4 className="text-[11px] font-semibold text-white tracking-[0.2em] uppercase mb-4">바로가기</h4>
             <ul className="space-y-2">
               {[
-                { label: '상품', href: '/products' },
                 { label: '온라인 구매', href: process.env.NEXT_PUBLIC_SHOP_URL || 'https://seseo-shop.vercel.app', isExternal: true },
                 { label: '예약하기', href: '#reservation' },
               ].map((link) => (
